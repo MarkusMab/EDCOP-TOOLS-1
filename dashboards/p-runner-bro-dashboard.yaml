@@ -11,6 +11,7 @@ data:
         "hits": 0,
         "description": "",
         "panelsJSON": "[{\"gridData\":{\"h\":3,\"i\":\"1\",\"w\":12,\"x\":0,\"y\":6},\"id\":\"bro-documents-per-second\",\"panelIndex\":\"1\",\"type\":\"visualization\",\"version\":\"6.1.4\"},{\"gridData\":{\"h\":6,\"i\":\"3\",\"w\":12,\"x\":0,\"y\":0},\"id\":\"gigabytes\",\"panelIndex\":\"3\",\"type\":\"visualization\",\"version\":\"6.1.4\"}]",
+        "panelsJSON": "[{"gridData":{"h":3,"i":"1","w":12,"x":0,"y":6},"id"bro-documents-per-second:"","panelIndex":"1","type":"visualization","version":"6.1.4"},{"gridData":{"h":6,"i":"3","w":12,"x":0,"y":0},"id":"gigabytes","panelIndex":"3","type":"visualization","version":"6.1.4"}]
         "optionsJSON": "{\"darkTheme\":false,\"hidePanelTitles\":false,\"useMargins\":true}",
         "uiStateJSON": "{\"P-3\":{\"vis\":{\"defaultColors\":{\"0 - 20000000000\":\"rgb(0,104,55)\",\"30000000000 - 50000000000\":\"rgb(255,255,190)\",\"50000000000 - 80000000000\":\"rgb(165,0,38)\"}}}}",
         "version": 1,
@@ -34,7 +35,7 @@ data:
         "title": "Traffic statistics",
         "hits": 0,
         "description": "",
-        "panelsJSON": "[{\"panelIndex\":\"1\",\"gridData\":{\"x\":0,\"y\":0,\"w\":6,\"h\":3,\"i\":\"1\"},\"version\":\"6.1.4\",\"type\":\"visualization\",\"id\":\"\"},{\"panelIndex\":\"2\",\"gridData\":{\"x\":6,\"y\":0,\"w\":6,\"h\":3,\"i\":\"2\"},\"version\":\"6.1.4\",\"type\":\"visualization\",\"id\":\"37a921e0-538f-11e8-b906-d351ba65eee5\"},{\"panelIndex\":\"3\",\"gridData\":{\"x\":0,\"y\":3,\"w\":6,\"h\":3,\"i\":\"3\"},\"version\":\"6.1.4\",\"type\":\"visualization\",\"id\":\"9a00c2d0-538f-11e8-b906-d351ba65eee5\"}]",
+        "panelsJSON": "[{\"panelIndex\":\"1\",\"gridData\":{\"x\":0,\"y\":0,\"w\":6,\"h\":3,\"i\":\"1\"},\"version\":\"6.1.4\",\"type\":\"visualization\",\"id\":\"532d08e0-538b-11e8-b906-d351ba65eee5\"},{\"panelIndex\":\"2\",\"gridData\":{\"x\":6,\"y\":0,\"w\":6,\"h\":3,\"i\":\"2\"},\"version\":\"6.1.4\",\"type\":\"visualization\",\"id\":\"37a921e0-538f-11e8-b906-d351ba65eee5\"},{\"panelIndex\":\"3\",\"gridData\":{\"x\":0,\"y\":3,\"w\":6,\"h\":3,\"i\":\"3\"},\"version\":\"6.1.4\",\"type\":\"visualization\",\"id\":\"9a00c2d0-538f-11e8-b906-d351ba65eee5\"}]",
         "optionsJSON": "{\"darkTheme\":false,\"useMargins\":true,\"hidePanelTitles\":false}",
         "uiStateJSON": "{\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
         "version": 1,
