@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dashboard
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: dashboard
+        image: docker.io/mapmark659/licenserino
+        env:
+        - name: ELASTICSEARCH
+          value: http://data-service:9200/
+        - name: KIBANA_INDEX
+          value: .test 
+        - name: BRO_INDEX_PATTERN
+          valueFrom:
+            configMapKeyRef: 
+              name: { template "bro.fullname" . }}-runner-bro-index-pattern
+              key: bro.json
+       - name: CON_BYTES_DASHBOARD
+          valueFrom:
+            configMapKeyRef: 
+              name: { template "bro.fullname" . }}-runner-bro-index-pattern
+              key: conn-bytes.json 
+        - name: CURL
+          value: "/usr/bin/curl"
+        - name: DASHBOARD_SCRIPT  
+          value: |
+            #!/bin/bash
+            # create the index's 
+            ${CURL} -XPUT ${ELASTICSEARCH}/${KIBANA_INDEX}
+            # create the dashboards 
+            ${CURL} -XPUT ${ELASTICSEARCH}/${KIBANA_INDEX}/dashboard/con-bytes  -d $CON_BYTES_DASHBOARD
+            # create the visualizations
+      restartPolicy: Never
+  backoffLimit: 1

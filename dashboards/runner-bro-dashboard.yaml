@@ -1,0 +1,184 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bro.fullname" . }}-runner-bro-dashbaords
+data:
+  conn-bytes.json: |
+    {
+      "title": "CONN Bytes",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"conn-orig-bytes-by-location\",\"panelIndex\":10,\"row\":1,\"size_x\":8,\"size_y\":6,\"type\":\"visualization\"},{\"id\":\"conn-top-orig-bytes-country\",\"type\":\"visualization\",\"panelIndex\":11,\"size_x\":3,\"size_y\":9,\"col\":9,\"row\":1},{\"id\":\"conn-top-resp-bytes-country\",\"type\":\"visualization\",\"panelIndex\":12,\"size_x\":3,\"size_y\":9,\"col\":9,\"row\":10},{\"id\":\"conn-orig-bytes-by-proto-over-time\",\"type\":\"visualization\",\"panelIndex\":13,\"size_x\":8,\"size_y\":3,\"col\":1,\"row\":7},{\"id\":\"conn-resp-bytes-by-location\",\"type\":\"visualization\",\"panelIndex\":14,\"size_x\":8,\"size_y\":6,\"col\":1,\"row\":10},{\"id\":\"conn-resp-bytes-by-proto-over-time\",\"type\":\"visualization\",\"panelIndex\":15,\"size_x\":8,\"size_y\":3,\"col\":1,\"row\":16}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-2\":{\"mapCenter\":[30.14512718337613,-0.17578125]},\"P-3\":{\"mapCenter\":[30.14512718337613,-0.17578125]},\"P-8\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-9\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-11\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-12\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-10\":{\"mapCenter\":[0,0.17578125]}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+      "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  conn.json: |
+    {
+      "title": "CONN",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"conn-protocols-over-time\",\"panelIndex\":1,\"row\":1,\"size_x\":12,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"conn-top-responding-asn\",\"panelIndex\":4,\"row\":5,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":4,\"id\":\"conn-top-originating-asn\",\"panelIndex\":2,\"row\":5,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":7,\"id\":\"conn-top-responding-country\",\"panelIndex\":5,\"row\":5,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"},{\"col\":10,\"id\":\"conn-top-originating-country\",\"panelIndex\":3,\"row\":5,\"size_x\":3,\"size_y\":6,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-5\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-4\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  dns.json: |
+    {
+      "title": "DNS",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"dns-protocol\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":4,\"size_y\":3,\"col\":1,\"row\":1},{\"id\":\"dns-responding-host\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":4,\"size_y\":3,\"col\":5,\"row\":1},{\"id\":\"dns-top-query\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":4,\"size_y\":9,\"col\":9,\"row\":1},{\"id\":\"dns-query-types-over-time\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":8,\"size_y\":3,\"col\":1,\"row\":4},{\"id\":\"dns-response-codes-over-time\",\"type\":\"visualization\",\"panelIndex\":5,\"size_x\":8,\"size_y\":3,\"col\":1,\"row\":7},{\"id\":\"dns-nxdomain\",\"type\":\"visualization\",\"panelIndex\":6,\"size_x\":8,\"size_y\":3,\"col\":1,\"row\":10}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-6\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  files.json: |
+    {
+      "title": "FILES",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"file-mime-types\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":5,\"size_y\":10,\"col\":1,\"row\":1},{\"id\":\"file-source\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":4,\"size_y\":10,\"col\":6,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  flows.json: |
+    {
+      "title": "FLOWS",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"flows-bytes-to-client\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":12,\"size_y\":5,\"col\":1,\"row\":1},{\"id\":\"flows-bytes-to-server\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":12,\"size_y\":5,\"col\":1,\"row\":6}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  https.json: |
+    {
+      "title": "HTTP",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"id\":\"http-method\",\"panelIndex\":1,\"row\":1,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"http-top-host-headers\",\"panelIndex\":2,\"row\":4,\"size_x\":6,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"http-top-uri\",\"panelIndex\":3,\"row\":8,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":7,\"id\":\"http-top-user-agent\",\"panelIndex\":4,\"row\":4,\"size_x\":6,\"size_y\":4,\"type\":\"visualization\"},{\"id\":\"http-logs-over-time-by-method\",\"type\":\"visualization\",\"panelIndex\":5,\"size_x\":8,\"size_y\":3,\"col\":5,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-4\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  log-types.json: |
+    {
+      "title": "Log Types",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"log-types-over-time\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":12,\"size_y\":3,\"col\":1,\"row\":1},{\"id\":\"log-types\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":4,\"size_y\":5,\"col\":1,\"row\":4}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  main.json: |
+    {
+      "title": "MAIN",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"table-of-contents\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":12,\"size_y\":9,\"col\":1,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  notice.json: |
+    {
+      "title": "NOTICE",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"notice-message-note-distribution\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":4,\"size_y\":4,\"col\":1,\"row\":1},{\"id\":\"notice-messages\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":6,\"size_y\":10,\"col\":5,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-2\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  overview.json: |
+    {
+      "title": "OVERVIEW",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"flows-composite\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":1},{\"id\":\"log-types-over-time\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":5},{\"id\":\"stats-packets-dropped\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":6,\"size_y\":2,\"col\":1,\"row\":9},{\"id\":\"stats-max-packets-dropped\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":6,\"size_y\":2,\"col\":7,\"row\":9}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  ssl.json: |
+    {
+      "title": "SSL",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"ssl-issuer\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":8,\"size_y\":4,\"col\":1,\"row\":5},{\"id\":\"ssl-responding-port\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":4,\"size_y\":4,\"col\":5,\"row\":1},{\"id\":\"ssl-server-name\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":4,\"size_y\":13,\"col\":9,\"row\":1},{\"id\":\"ssl-subject\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":8,\"size_y\":5,\"col\":1,\"row\":9},{\"id\":\"ssl-version\",\"type\":\"visualization\",\"panelIndex\":5,\"size_x\":4,\"size_y\":4,\"col\":1,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-1\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-3\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}},\"P-4\":{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  stats.json: |
+    {
+      "title": "STATS",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"stat-files-seen\",\"type\":\"visualization\",\"panelIndex\":1,\"size_x\":4,\"size_y\":3,\"col\":1,\"row\":4},{\"id\":\"stat-packet-lag\",\"type\":\"visualization\",\"panelIndex\":2,\"size_x\":4,\"size_y\":3,\"col\":9,\"row\":1},{\"id\":\"stats-average-tcp-conn\",\"type\":\"visualization\",\"panelIndex\":3,\"size_x\":4,\"size_y\":3,\"col\":5,\"row\":4},{\"id\":\"stats-average-udp-conn\",\"type\":\"visualization\",\"panelIndex\":4,\"size_x\":4,\"size_y\":3,\"col\":9,\"row\":4},{\"id\":\"stats-bytes-received\",\"type\":\"visualization\",\"panelIndex\":5,\"size_x\":12,\"size_y\":3,\"col\":1,\"row\":7},{\"id\":\"stats-max-packets-dropped\",\"type\":\"visualization\",\"panelIndex\":6,\"size_x\":4,\"size_y\":3,\"col\":5,\"row\":1},{\"id\":\"stats-packets-dropped\",\"type\":\"visualization\",\"panelIndex\":7,\"size_x\":4,\"size_y\":3,\"col\":1,\"row\":1}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  
+
+
+
+
+
+
+
+
+
+

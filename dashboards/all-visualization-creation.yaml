@@ -1,0 +1,43 @@
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: visualization
+  namespace: default
+spec:
+  template:
+    spec:
+      containers:
+      - name: dashboard
+        image: docker.io/mapmark659/licenserino
+        securityContext:
+          privileged: true
+        env:
+        - name: ELASTICSEARCH
+          value: http://data-service:9200
+        - name: KIBANA_INDEX
+          value: .fake
+#        - name: BRO_INDEX_PATTERN
+#          valueFrom:
+#            configMapKeyRef:
+#              name: visualization-test-map
+#              key: bro.json
+        - name: CON_BYTES_VISUALIZATION
+          valueFrom:
+            configMapKeyRef:
+              name: visualization-test-map
+              key: conn-orig-bytes-by-location.json
+        - name: CURL
+          value: "/usr/bin/curl"
+        - name: STARTUP_SCRIPT
+          value: |
+            #!/bin/bash
+            # create the index's
+            #echo   "'$CON_BYTES_VISUALIZATION'"
+            #${CURL} -XPUT ${ELASTICSEARCH}/${KIBANA_INDEX}
+            ${CURL} -XPUT -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/visualization/con-bytes -d $CON_BYTES_VISUALIZATION
+            # create the visualizations
+      restartPolicy: Never
+  backoffLimit: 1
+
+

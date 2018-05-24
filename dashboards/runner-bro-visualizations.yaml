@@ -1,0 +1,690 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "bro.fullname" . }}-runner-bro-visualizations
+data:
+  conn-orig-bytes-by-location.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Originating Bytes by Location",
+        "visState": "{\"title\":\"CONN - Originating Bytes by Location\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"legendPosition\":\"bottomright\",\"mapCenter\":[15,5],\"mapType\":\"Scaled Circle Markers\",\"mapZoom\":2,\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"3\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"@meta.geoip_resp.location\",\"autoPrecision\":true,\"precision\":3}},{\"id\":\"2\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"conn.orig_bytes\",\"customLabel\":\"Originating Bytes\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"mapCenter\":[0,0],\"mapZoom\":2}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-orig-bytes-by-proto-over-time.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Orig Bytes by Protocol over Time",
+        "visState": "{\"title\":\"CONN - Orig Bytes by Protocol over Time\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"2\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"conn.orig_bytes\",\"customLabel\":\"Originating Bytes\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Timestamp\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"conn.proto\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"2\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"colors\":{\"tcp\":\"#629E51\",\"udp\":\"#65C5DB\",\"icmp\":\"#E24D42\"}}}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-protocols-over-time.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Protocols Over Time",
+        "visState": "{\"title\":\"CONN - Protocols Over Time\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"conn.proto\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Protocol\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-resp-bytes-by-location.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Responding Bytes by Location",
+        "visState": "{\"title\":\"CONN - Responding Bytes by Location\",\"type\":\"tile_map\",\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"legendPosition\":\"bottomright\",\"mapCenter\":[15,5],\"mapType\":\"Scaled Circle Markers\",\"mapZoom\":2,\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"aggs\":[{\"id\":\"3\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"@meta.geoip_resp.location\",\"autoPrecision\":true,\"precision\":3}},{\"id\":\"2\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"conn.resp_bytes\",\"customLabel\":\"Responder Bytes\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"mapCenter\":[0,0],\"mapZoom\":2}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-resp-bytes-by-proto-over-time.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Resp Bytes by Protocol over Time",
+        "visState": "{\"title\":\"CONN - Resp Bytes by Protocol over Time\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"2\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"conn.resp_bytes\",\"customLabel\":\"Responding Bytes\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Timestamp\"}},{\"id\":\"4\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"conn.proto\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"2\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"colors\":{\"tcp\":\"#629E51\",\"udp\":\"#65C5DB\",\"icmp\":\"#E24D42\"}}}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-top-orig-bytes-country.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Top Originating Bytes By Country",
+        "visState": "{\"title\":\"CONN - Top Originating Bytes By Country\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"conn.orig_bytes\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"@meta.geoip_orig.country_name\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Originating Country\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-top-originating-asn.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Top Originating ASN",
+        "visState": "{\"title\":\"CONN - Top Originating ASN\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"conn.orig_asn\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Originating ASN\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-top-originating-country.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Top Originating Country",
+        "visState": "{\"title\":\"CONN - Top Originating Country\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"@meta.geoip_orig.country_name\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Originating Country\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-top-resp-bytes-country.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Top Responding Bytes By Country",
+        "visState": "{\"title\":\"CONN - Top Responding Bytes By Country\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"conn.resp_bytes\",\"customLabel\":\"Responding Bytes\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"@meta.geoip_resp.country_name\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Responding Country\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-top-responding-asn.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Top Responding ASN",
+        "visState": "{\"title\":\"CONN - Top Responding ASN\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"conn.resp_asn\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Responding ASN\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  conn-top-responding-country.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "CONN - Top Responding Country",
+        "visState": "{\"title\":\"CONN - Top Responding Country\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"@meta.geoip_resp.country_name\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Responding Country\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "conn",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  dns-nxdomain.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "DNS - NXDOMAIN",
+        "visState": "{\"title\":\"DNS - NXDOMAIN\",\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"dns.query\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Query\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "dns-nxdomain",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  dns-protocol.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "DNS - Protocol",
+        "visState": "{\"title\":\"DNS - Protocol\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"dns.proto\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "dns",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  dns-query-types-over-time.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "DNS - Query Types Over Time",
+        "visState": "{\"title\":\"DNS - Query Types Over Time\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"dns.qtype_name\",\"size\":20,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Query Type\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "dns",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  dns-responding-host.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "DNS - Responding Host",
+        "visState": "{\"title\":\"DNS - Responding Host\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"dns.id_resp_h\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Responding Host\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "dns",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  dns-response-codes-over-time.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "DNS - Response Codes Over Time",
+        "visState": "{\"title\":\"DNS - Response Codes Over Time\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"dns.rcode_name\",\"size\":10,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Response\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "dns",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  dns-top-query.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "DNS - Top Query",
+        "visState": "{\"title\":\"DNS - Top Query\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"dns.query\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Query\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "dns",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  file-mime-types.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "FILES - MIME Type",
+        "visState": "{\"title\":\"FILES - MIME Type\",\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"files.mime_type\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"MIME Type\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "files",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  file-source.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "FILES - Source",
+        "visState": "{\"title\":\"FILES - Source\",\"type\":\"table\",\"params\":{\"perPage\":50,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"files.source\",\"size\":50,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Source\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "files",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  flows-bytes-to-clients.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "FLOW - Bytes to Client",
+        "visState": "{\"title\":\"FLOW - Bytes to Client\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"flow.bytes_toclient\",\"customLabel\":\"Bytes to Client\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Time\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "flow",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  flows-bytes-to-server.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "FLOW - Bytes to Client",
+        "visState": "{\"title\":\"FLOW - Bytes to Client\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"flow.bytes_toclient\",\"customLabel\":\"Bytes to Client\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Time\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "flow",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  flow-composite.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "FLOWS - Composite",
+        "visState": "{\"title\":\"FLOWS - Composite\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"flow.bytes_toserver\",\"customLabel\":\"Bytes to Server\"}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"Time\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"flow.bytes_toclient\",\"customLabel\":\"Bytes to Client\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "flow",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  http-logs-over-time-by-method.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "HTTP - Logs over time by method",
+        "visState": "{\"title\":\"HTTP - Logs over time by method\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"http.method\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "http",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  http-method.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "HTTP - Method",
+        "visState": "{\"title\":\"HTTP - Method\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"http.method\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "http",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  http-top-host-header.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "HTTP - Top Host Headers",
+        "visState": "{\"title\":\"HTTP - Top Host Headers\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"http.host\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Host Header\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "http",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  http-top-uri.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "HTTP - Top URI",
+        "visState": "{\"title\":\"HTTP - Top URI\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"http.uri\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"URI\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "http",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  http-top-user-agent.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "HTTP - Top User Agent",
+        "visState": "{\"title\":\"HTTP - Top User Agent\",\"type\":\"table\",\"params\":{\"perPage\":1000,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"http.user_agent.keyword\",\"size\":1000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"User Agent\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "http",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  log-types-over-time.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "Log Types Over Time",
+        "visState": "{\"title\":\"Log Types Over Time\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"scale\":\"linear\",\"mode\":\"stacked\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"@meta.stream\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Log Type\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"index\":\"bro-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+          }
+        }
+      }
+  log-types.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "Log Types",
+        "visState": "{\"title\":\"Log Types\",\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"@meta.stream\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Log Type\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"index\":\"bro-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+          }
+        }
+      }
+  notice-message-note-distribution.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "NOTICE - Message Note Distribution",
+        "visState": "{\"title\":\"NOTICE - Message Note Distribution\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"notice.note\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "notice",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  notice-messages.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "NOTICE - Messages",
+        "visState": "{\"title\":\"NOTICE - Messages\",\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"notice.note\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Note\"}},{\"id\":\"3\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"notice.msg.keyword\",\"size\":500,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Message\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "notice",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  ssl-issuer.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "SSL - Issuer",
+        "visState": "{\"title\":\"SSL - Issuer\",\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"ssl.issuer\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Issuer\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "ssl",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  ssl-responding-port.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "SSL - Responding Port",
+        "visState": "{\"title\":\"SSL - Responding Port\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"ssl.id_resp_p\",\"size\":5,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Responding Port\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "ssl",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  ssl-server-name.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "SSL - Server Name",
+        "visState": "{\"title\":\"SSL - Server Name\",\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"ssl.server_name\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Server Name\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "ssl",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  ssl-subject.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "SSL - Subject",
+        "visState": "{\"title\":\"SSL - Subject\",\"type\":\"table\",\"params\":{\"perPage\":100,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false,\"sort\":{\"columnIndex\":null,\"direction\":null},\"showTotal\":false,\"totalFunc\":\"sum\"},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"ssl.subject\",\"size\":10000,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Subject\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{\"vis\":{\"params\":{\"sort\":{\"columnIndex\":null,\"direction\":null}}}}",
+        "description": "",
+        "savedSearchId": "ssl",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  ssl-version.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "SSL - Version",
+        "visState": "{\"title\":\"SSL - Version\",\"type\":\"pie\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"legendPosition\":\"right\",\"isDonut\":false},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"ssl.version\",\"size\":50,\"order\":\"desc\",\"orderBy\":\"1\",\"customLabel\":\"Version\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "ssl",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  stat-files-seen.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "STAT - Files Seen",
+        "visState": "{\"title\":\"STAT - Files Seen\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"stats.files\",\"customLabel\":\"Files Seen\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "stats",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  stat-packages-lag.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "STAT - Packet Lag",
+        "visState": "{\"title\":\"STAT - Packet Lag\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"stats.pkt_lag\",\"customLabel\":\"Packet Lag\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "stats",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  stats-average-tcp-conn.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "STATS - Average TCP Conn",
+        "visState": "{\"title\":\"STATS - Average TCP Conn\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"stats.tcp_conns\",\"customLabel\":\"Average TCP Conn/min\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "stats",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  stats-average-udp-conn.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "STATS - Average UDP Conn",
+        "visState": "{\"title\":\"STATS - Average UDP Conn\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"stats.udp_conns\",\"customLabel\":\"Average UDP Conn/min\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "stats",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  stats-bytes-received.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "STATS - Bytes Received",
+        "visState": "{\"title\":\"STATS - Bytes Received\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"stats.bytes_recv\",\"customLabel\":\"Bytes Received\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "stats",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  stats-max-packets-dropped.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "STATS - Max Packets Dropped",
+        "visState": "{\"title\":\"STATS - Max Packets Dropped\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"max\",\"schema\":\"metric\",\"params\":{\"field\":\"stats.pkts_dropped\",\"customLabel\":\"Max Packets Dropped/min\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "stats",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  stats-packets-dropped.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "STATS - Packets Dropped",
+        "visState": "{\"title\":\"STATS - Packets Dropped\",\"type\":\"metric\",\"params\":{\"handleNoResults\":true,\"fontSize\":60},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"sum\",\"schema\":\"metric\",\"params\":{\"field\":\"stats.pkts_dropped\",\"customLabel\":\"Packets Dropped\"}}],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "savedSearchId": "stats",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"filter\":[]}"
+          }
+        }
+      }
+  table-of-contets.json: |
+    {
+      "type": "visualization",
+      "visualization": {
+        "title": "Table of Contents",
+        "visState": "{\"title\":\"Table of Contents\",\"type\":\"markdown\",\"params\":{\"markdown\":\"# ROCK NSM\\n----\\n### Hunt Dashboards:  \\n#### [OVERVIEW](/app/kibana#/dashboard/overview)  \\n#### [FLOWS](/app/kibana#/dashboard/flows)  \\n#### [LOG TYPES](/app/kibana#/dashboard/log-types)\\n#### [CONN](/app/kibana#/dashboard/conn)\\n#### [CONN Bytes](/app/kibana#/dashboard/conn-bytes)\\n#### [HTTP](/app/kibana#/dashboard/http)  \\n#### [SSL](/app/kibana#/dashboard/ssl)  \\n#### [DNS](/app/kibana#/dashboard/dns)\\n#### [FILES](/app/kibana#/dashboard/files)  \\n#### [NOTICE](/app/kibana#/dashboard/notice)  \\n#### [SURICATA](/app/kibana#/dashboard/suricata)\\n----\\n### Sensor Health Dashboards:  \\n#### [STATS](/app/kibana#/dashboard/stats)  \\n  \\n  \\n----\\nContribute your own dashboards [here](https://github.com/rocknsm/rock-dashboards)\"},\"aggs\":[],\"listeners\":{}}",
+        "uiStateJSON": "{}",
+        "description": "",
+        "version": 1,
+        "kibanaSavedObjectMeta": {
+          "searchSourceJSON": "{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+          }
+        }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
