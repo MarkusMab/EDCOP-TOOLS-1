@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: visualization-test-map
+  name: {{ template "bro.fullname" . }}-runner-bro-visualizations
 data:
   documents.json: |
     {

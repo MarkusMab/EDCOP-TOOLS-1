@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: visualization
+  name: { template "bro.fullname" . }}-runner-bro-dashboards
 spec:
   containers:
     - name: visualization
@@ -31,32 +31,22 @@ spec:
           ${CURL} -XPUT -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/index-pattern:bro  -d @bro.json
           #${CURL} -XPUT -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/index-pattern:suricata  -d @suricata.json
           # create search
-          for file in ${SEARCH_DIR}/*.json
-              do
-                NAME=`basename ${file} .json`
-                 echo ${NAME}
-                 echo "Loading Search ${NAME}:"
-                 ${CURL} -XPUT  -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/search:${NAME} -d @${file}
-                      echo
-              done
+          #for file in ${SEARCH_DIR}/*.json
+          #    do
+          #      NAME=`basename ${file} .json`
+          #       echo ${NAME}
+          #       echo "Loading Search ${NAME}:"
+          #       ${CURL} -XPUT  -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/search:${NAME} -d @${file}
+          #            echo
+          #    done
           # create visualization
           for file in ${VIS_DIR}/*.json
               do
                 NAME=`basename ${file} .json`
-                 echo ${NAME}
-                 echo "Loading visualization ${NAME}:"
-                 ${CURL} -XPUT  -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/visualization:${NAME} -d @${file}
-                      echo
-              done
-          # create dashboards 
-          for file in ${DASH_DIR}/*.json
-              do
-                NAME=`basename ${file} .json`
-                 echo ${NAME} #debug 
                  echo "Loading dashboard ${NAME}:"
                  ${CURL} -XPUT  -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/dashboard:${NAME} -d @${file}
                       echo
-              done          
+              done
       volumeMounts:
       - name: visualization
         mountPath: /etc/visualization
@@ -69,14 +59,14 @@ spec:
   volumes:
     - name: visualization
       configMap:
-        name: visualization-test-map
+        name: { template "bro.fullname" . }}-runner-bro-visualizations
     - name: index
       configMap:
-        name: bro-index
+        name: {{ template "bro.fullname" . }}-runner-bro-index-pattern
     - name: search
       configMap:
         name: bro-search
     - name: dashboard
       configMap:
-        name: bro-dashboard
+        name: {{ template "bro.fullname" . }}-runner-bro-dashboards
   restartPolicy: Never
