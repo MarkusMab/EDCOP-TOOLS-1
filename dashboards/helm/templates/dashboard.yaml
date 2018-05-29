@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
     - name: visualization
-      image: docker.io/mapmark659/licenserino
+      image: gcr.io/edcop-public/runner:latest
       securityContext:
         privileged: true
       env:
@@ -29,7 +29,7 @@ spec:
           # create index pattern
           cd /etc/index
           ${CURL} -XPUT -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/index-pattern:bro  -d @bro.json
-          #${CURL} -XPUT -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/index-pattern:suricata  -d @suricata.json
+          ${CURL} -XPUT -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/index-pattern:suricata  -d @suricata.json
           # create search
           #for file in ${SEARCH_DIR}/*.json
           #    do
@@ -41,6 +41,14 @@ spec:
           #    done
           # create visualization
           for file in ${VIS_DIR}/*.json
+              do
+                NAME=`basename ${file} .json`
+                 echo "Loading dashboard ${NAME}:"
+                 ${CURL} -XPUT  -H 'Content-Type:application/json' ${ELASTICSEARCH}/${KIBANA_INDEX}/doc/visualization:${NAME} -d @${file}
+                      echo
+              done
+          # Create Dahboards 
+          for file in ${DASH_DIR}/*.json
               do
                 NAME=`basename ${file} .json`
                  echo "Loading dashboard ${NAME}:"
@@ -70,3 +78,5 @@ spec:
       configMap:
         name: {{ template "bro.fullname" . }}-runner-bro-dashboards
   restartPolicy: Never
+
+  

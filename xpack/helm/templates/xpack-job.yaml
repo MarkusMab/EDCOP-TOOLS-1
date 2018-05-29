@@ -8,12 +8,12 @@ spec:
     spec:
       containers:
       - name: Xpack-License
-        image: docker.io/mapmark659/licenserino
+        image: gcr.io/edcop-public/runner:latest
         env:
         - name: CURL
           value: "/usr/bin/curl"
         - name: license
-          value: 
+          value: {{ .Values.license.key }} 
         - name: site
           value: "http://data-service:9200/_xpack/license"
         - name: STARTUP_SCRIPT
