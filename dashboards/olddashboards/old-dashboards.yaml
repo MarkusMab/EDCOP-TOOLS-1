@@ -66,16 +66,16 @@ spec:
   volumes:
     - name: visualization
       configMap:
-        name: { template "bro.fullname" . }}-runner-bro-visualizations
+        name: bro-visualizations
     - name: index
       configMap:
-        name: {{ template "bro.fullname" . }}-runner-bro-index-pattern
+        name: bro-index
     - name: search
       configMap:
-        name: {{ template "bro.fullname" . }}-runner-suricata-search 
+        name: bro-search
     - name: dashboard
       configMap:
-        name: {{ template "bro.fullname" . }}-runner-bro-dashboards
+        name: bro-dashboards
   restartPolicy: Never
 
   
